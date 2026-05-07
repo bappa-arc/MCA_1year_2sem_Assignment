@@ -74,7 +74,7 @@ int main(){
             break;
         case 12:
             free(arr);
-            printf("Program Exited Successfully.");
+            printf("Program Exited Successfully.\n");
             exit(0);
         default:
             printf("Invalid choice!");
