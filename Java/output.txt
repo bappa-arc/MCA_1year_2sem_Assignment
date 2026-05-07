@@ -1,0 +1,158 @@
+program 1 output:
+bappa@fedora:~/MCA_1year_2sem/Java$ javac Q1.java
+bappa@fedora:~/MCA_1year_2sem/Java$ java Q1.java
+Enter name: 
+Bappa
+Enter DOB (Day Month Year): 
+23 05 2005
+
+Name: Bappa
+
+Age: 20
+
+Category: Young Adult.
+bappa@fedora:~/MCA_1year_2sem/Java$ java Q1.java
+Enter name: 
+Vivek
+Enter DOB (Day Month Year): 
+25 12 2017
+
+Name: Vivek
+
+Age: 8
+
+Category: Under Age.
+
+
+
+
+
+program 2 output:
+bappa@fedora:~/MCA_1year_2sem/Java$ javac Q2.java
+bappa@fedora:~/MCA_1year_2sem/Java$ java Q2.java
+Enter Stack Size: 4
+
+--- STACK MENU ---
+1. Push
+2. Pop
+3. Peek
+4. Display Full Stack
+5. Display Element by Depth
+6. Exit
+Enter Choice: 2
+Stack underflow!
+
+--- STACK MENU ---
+1. Push
+2. Pop
+3. Peek
+4. Display Full Stack
+5. Display Element by Depth
+6. Exit
+Enter Choice: 1
+Enter Value: 1
+1 pushed in the stack.
+
+--- STACK MENU ---
+1. Push
+2. Pop
+3. Peek
+4. Display Full Stack
+5. Display Element by Depth
+6. Exit
+Enter Choice: 1
+Enter Value: 2
+2 pushed in the stack.
+
+--- STACK MENU ---
+1. Push
+2. Pop
+3. Peek
+4. Display Full Stack
+5. Display Element by Depth
+6. Exit
+Enter Choice: 1
+Enter Value: 3
+3 pushed in the stack.
+
+--- STACK MENU ---
+1. Push
+2. Pop
+3. Peek
+4. Display Full Stack
+5. Display Element by Depth
+6. Exit
+Enter Choice: 1
+Enter Value: 4
+4 pushed in the stack.
+
+--- STACK MENU ---
+1. Push
+2. Pop
+3. Peek
+4. Display Full Stack
+5. Display Element by Depth
+6. Exit
+Enter Choice: 1
+Enter Value: 5
+Stack overflow!
+
+--- STACK MENU ---
+1. Push
+2. Pop
+3. Peek
+4. Display Full Stack
+5. Display Element by Depth
+6. Exit
+Enter Choice: 3
+Top element: 4
+
+--- STACK MENU ---
+1. Push
+2. Pop
+3. Peek
+4. Display Full Stack
+5. Display Element by Depth
+6. Exit
+Enter Choice: 4
+Stack elements: 
+1
+2
+3
+4
+
+--- STACK MENU ---
+1. Push
+2. Pop
+3. Peek
+4. Display Full Stack
+5. Display Element by Depth
+6. Exit
+Enter Choice: 5
+Enter Depth: 7
+Invalid Depth!
+
+--- STACK MENU ---
+1. Push
+2. Pop
+3. Peek
+4. Display Full Stack
+5. Display Element by Depth
+6. Exit
+Enter Choice: 5
+Enter Depth: 2
+Element at depth 2 is: 2
+
+--- STACK MENU ---
+1. Push
+2. Pop
+3. Peek
+4. Display Full Stack
+5. Display Element by Depth
+6. Exit
+Enter Choice: 6
+Exiting Program...
+
+
+
+
