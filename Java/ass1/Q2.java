@@ -1,66 +1,5 @@
+import mystack.Stack;
 import java.util.Scanner;
-
-class Stack{
-    int [] arr;
-    int top;
-    int size;
-
-    Stack(int size){
-        this.size = size;
-        arr = new int[size];
-        top = -1;
-    }
-
-    void push(int value){
-        if(top==size-1){
-            System.out.println("Stack overflow!");
-        }else{
-            top++;
-            arr[top] = value;
-            System.out.println(value+" pushed in the stack.");
-        }
-    }
-
-    void pop(){
-        if(top==-1){
-            System.out.println("Stack underflow!");
-        }else{
-            System.out.println(arr[top]+" popped from the stack.");
-            top--;
-        }
-    }
-
-    void peek(){
-        if(top==-1){
-            System.out.println("Stack is empty!");
-        }else{
-            System.out.println("Top element: "+arr[top]);
-        }
-    }
-
-    void display(){
-        if(top==-1){
-            System.out.println("Stack is empty!");
-        }else{
-            System.out.println("Stack elements: ");
-            for (int i=0; i<arr.length;i++){
-                System.out.println(arr[i]);
-            }
-        }
-    }
-
-    void display(int depth){
-        if(top==-1){
-            System.out.println("Stack is empty!");
-        }else if (depth < 0 || depth > top) {
-            System.out.println("Invalid Depth!");
-        } 
-        else {
-            System.out.println("Element at depth " + depth + " is: "+ arr[top - depth]);
-        }
-    }
-
-}
 
 
 public class Q2 {
@@ -91,14 +30,28 @@ public class Q2 {
                 case 1:
                     System.out.print("Enter Value: ");
                     int value = sc.nextInt();
-                    s.push(value);
+                    if (s.push(value)) {
+                        System.out.println(value + " pushed in the stack.");
+                    } else {
+                        System.out.println("Stack overflow!");
+                    }
                     break;
                 case 2:
-                    s.pop();
+                    int popped = s.pop();
+                    if (popped == -1) {
+                        System.out.println("Stack underflow!");
+                    } else {
+                        System.out.println(popped + " popped from the stack.");
+                    }
                     break;
 
                 case 3:
-                    s.peek();
+                    int topElement = s.peek();
+                    if (topElement == -1) {
+                        System.out.println("Stack is empty!");
+                    } else {
+                        System.out.println("Top element: " + topElement);
+                    }
                     break;
 
                 case 4:
@@ -108,7 +61,16 @@ public class Q2 {
                 case 5:
                     System.out.print("Enter Depth: ");
                     int depth = sc.nextInt();
-                    s.display(depth);
+                    if (s.isEmpty()) {
+                        System.out.println("Stack is empty!");
+                    } else {
+                        int element = s.display(depth);
+                        if (element == -1) {
+                            System.out.println("Invalid Depth!");
+                        } else {
+                            System.out.println("Element at depth " + depth + " is: " + element);
+                        }
+                    }
                     break;
 
                 case 6:

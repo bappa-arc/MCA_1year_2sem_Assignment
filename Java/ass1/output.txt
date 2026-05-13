@@ -28,8 +28,8 @@ Category: Under Age.
 
 
 program 2 output:
-bappa@fedora:~/MCA_1year_2sem/Java$ javac Q2.java
-bappa@fedora:~/MCA_1year_2sem/Java$ java Q2.java
+bappa@fedora:~/MCA_1year_2sem/Java/ass1$ javac mystack/Stack.java Q2.java
+bappa@fedora:~/MCA_1year_2sem/Java/ass1$ java Q2.java
 Enter Stack Size: 4
 
 --- STACK MENU ---
@@ -116,10 +116,10 @@ Top element: 4
 6. Exit
 Enter Choice: 4
 Stack elements: 
-1
-2
-3
 4
+3
+2
+1
 
 --- STACK MENU ---
 1. Push
