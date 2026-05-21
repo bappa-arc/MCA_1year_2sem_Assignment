@@ -3,68 +3,127 @@ import mystack.*;
 
 public class Q4 {
 
-    static void sortToSpecialStack(int n, Stack source, SpecialStack destination) {
-        Stack buffer = new Stack(n);
+    static void moveDisk(
+            SpecialStack source,
+            SpecialStack destination,
+            String s,
+            String d) {
 
-        while (!source.isEmpty()) {
-            int current = source.pop();
+        int disk = source.pop();
 
-            while (!destination.isEmpty() && destination.peek() < current) {
-                buffer.push(destination.pop());
-            }
-            destination.push(current);
-            while (!buffer.isEmpty()) {
-                destination.push(buffer.pop());
-            }
+        if (disk != -1) {
+
+            if (destination.push(disk)) {
+
+            System.out.println(
+                "Move Disk " + disk +
+                " from " + s +
+                " to " + d
+            );
+
+        } else {
+
+            // restore disk if move failed
+            source.push(disk);
+
+            System.out.println(
+                "Illegal Move Prevented!"
+            );
+        }
         }
     }
 
-    static void towerOfHanoi(int n, Stack source, Stack auxilary, Stack destination){
-        if(n==1){
-            int temp = source.pop();
-            if(temp != -1){
-                destination.push(temp);
-            }
-            return;
+    static void insertDisk(
+            int disk,
+            SpecialStack destination,
+            SpecialStack auxiliary,
+            String d,
+            String a) {
+
+        // Move smaller disks away temporarily
+        while (!destination.isEmpty()
+                && destination.peek() < disk
+                && !auxiliary.isFull()) {
+
+            moveDisk(destination, auxiliary, d, a);
         }
-        towerOfHanoi(n-1, source, destination, auxilary);
-        int temp = source.pop();
-        if (temp != -1){
-            destination.push(temp);
+
+        // Insert disk
+        if (destination.push(disk)) {
+
+            System.out.println(
+                "Inserted Disk " + disk +
+                " into " + d
+            );
         }
-        towerOfHanoi(n-1, auxilary, source, destination);
+        while (!auxiliary.isEmpty()) {
+
+            moveDisk(auxiliary, destination, a, d);
+        }
     }
 
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Enter number of elements: ");
+        System.out.print("Enter number of disks: ");
         int n = sc.nextInt();
-        if (n <= 0){
-            System.out.println("Invalid Stack Size!");
+
+        if (n <= 0) {
+            System.out.println("Invalid Size!");
             return;
         }
 
-        Stack temp = new Stack(n);
-        SpecialStack original = new SpecialStack(n);
-        Stack helper = new Stack(n);
-        SpecialStack finalStack = new SpecialStack(n);
+        int input[] = new int[n];
 
-        System.out.println("Enter elements randomly: ");
-        for (int i=0; i<n; i++){
-            int value = sc.nextInt();
-            temp.push(value);
+        System.out.println("Enter haphazard disk values:");
+
+        for (int i = 0; i < n; i++) {
+            input[i] = sc.nextInt();
         }
+        SpecialStack source = new SpecialStack(n);
+        SpecialStack auxiliary = new SpecialStack(n);
+        SpecialStack destination = new SpecialStack(n);
 
-        sortToSpecialStack(n, temp, original);
-        System.out.println("\nOriginal Stack: ");
-        original.display();
+        // Insert values one by one
+        for (int i = 0; i < n; i++) {
 
-        towerOfHanoi(n, original, helper, finalStack);
+            int disk = input[i];
 
-        System.out.println("\nFinal Sorted Stack: ");
-        finalStack.display();
-        
+            // First disk
+            if (destination.isEmpty()) {
+
+                destination.push(disk);
+
+                System.out.println(
+                    "Inserted Disk " + disk
+                );
+            }
+            else if (disk <= destination.peek()) {
+
+                destination.push(disk);
+
+                System.out.println(
+                    "Inserted Disk " + disk
+                );
+            }
+
+            // Need Hanoi rearrangement
+            else {
+
+                insertDisk(
+                    disk,
+                    destination,
+                    auxiliary,
+                    "DESTINATION",
+                    "AUXILIARY"
+                );
+            }
+        }
+        System.out.println("Final Destination Stack");
+        destination.display();
+
         sc.close();
     }
+
 }
