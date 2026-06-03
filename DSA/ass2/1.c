@@ -13,7 +13,7 @@ void display(Node *head);
 void insertFront(Node **head, int value);
 void insertEnd(Node **head, int value);
 void insertAfterK(Node **head, int k, int value);
-/*void insertAfterValue(Node **head, int key, int value);
+void insertAfterValue(Node **head, int key, int value);
 void insertBeforeK(Node **head, int k, int value);
 void insertBeforeValue(Node **head, int key, int value);
 
@@ -30,7 +30,7 @@ void searchElement(Node *head, int value);
 
 Node* mergeSorted(Node *head1, Node *head2);
 Node* concatenate(Node *head1, Node *head2);
-int areEqual(Node *head1, Node *head2);*/
+int areEqual(Node *head1, Node *head2);
 
 int main(){
     Node *head1 = NULL;
@@ -57,11 +57,10 @@ int main(){
         printf("15. Reverse List\n");
         printf("16. Sort List\n");
         printf("17. Search Element\n");
-        printf("18. Create List 2\n");
-        printf("19. Merge Two Sorted Lists\n");
-        printf("20. Concatenate Two Lists\n");
-        printf("21. Check Lists Equality\n");
-        printf("22. Exit\n");
+        printf("18. Merge Two Sorted Lists\n");
+        printf("19. Concatenate Two Lists\n");
+        printf("20. Check Lists Equality\n");
+        printf("21. Exit\n");
         printf("\n=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
@@ -93,7 +92,7 @@ int main(){
                 scanf("%d%d", &k, &value);
                 insertAfterK(&head1, k, value);
                 break;
-            /*case 6:
+            case 6:
                 printf("Enter key and value: ");
                 scanf("%d%d", &value, &k);
                 insertAfterValue(&head1, value, k);
@@ -156,28 +155,33 @@ int main(){
                 break;
 
             case 18:
+                printf("Create list2:\n");
                 createList(&head2);
-                break;
-
-            case 19:
+                sortList(&head1);
+                sortList(&head2);
                 head1 = mergeSorted(head1, head2);
                 printf("Merged List:\n");
                 display(head1);
+                head2 = NULL;
                 break;
-            case 20:
+            case 19:
+                createList(&head2);
                 head1 = concatenate(head1, head2);
                 printf("Concatenated List:\n");
                 display(head1);
+                head2 = NULL;
                 break;
 
-            case 21:
+            case 20:
+                createList(&head2);
                 if (areEqual(head1, head2))
                     printf("Lists are Equal\n");
                 else
                     printf("Lists are NOT Equal\n");
-                break;*/
+                head2 = NULL;
+                break;
 
-            case 22:
+            case 21:
                 exit(0);
             default:
                 printf("Invalid choice!!");
@@ -269,4 +273,267 @@ void insertAfterK(Node **head, int k, int value){
     newNode->data=value;
     newNode->next=temp->next;
     temp->next=newNode;
+}
+
+void insertAfterValue(Node **head, int key, int value){
+    Node *temp = *head;
+    while(temp != NULL && temp->data != key){
+        temp = temp->next;
+    }
+    if (temp == NULL){
+        printf("Value not found!!\n");
+        return;
+    }
+
+    Node *newNode = (Node*)malloc(sizeof(Node));
+    newNode->data = value;
+    newNode->next = temp->next;
+    temp->next = newNode;
+}
+
+void insertBeforeK(Node **head, int k, int value){
+    if (k == 1){
+        insertFront(head, value);
+        return;
+    }
+
+    Node *temp = *head;
+    for (int i = 1; i < k - 1 && temp != NULL; i++)
+        temp = temp->next;
+    if (temp == NULL){
+        printf("Invalid k\n");
+        return;
+    }
+
+    Node *newNode = (Node*)malloc(sizeof(Node));
+    newNode->data = value;
+    newNode->next = temp->next;
+    temp->next = newNode;
+}
+
+void insertBeforeValue(Node **head, int key, int value){
+    if (*head == NULL)
+        return;
+
+    if ((*head)->data == key){
+        insertFront(head, value);
+        return;
+    }
+
+    Node *temp = *head;
+    while (temp->next != NULL && temp->next->data != key)
+        temp = temp->next;
+    if (temp->next == NULL){
+        printf("Value not found\n");
+        return;
+    }
+
+    Node *newNode = (Node*)malloc(sizeof(Node));
+    newNode->data = value;
+    newNode->next = temp->next;
+    temp->next = newNode;
+}
+
+
+void deleteFront(Node **head){
+    if (*head == NULL)
+        return;
+
+    Node *temp = *head;
+    *head = (*head)->next;
+    free(temp);
+}
+
+void deleteEnd(Node **head){
+    if (*head == NULL)
+        return;
+
+    if ((*head)->next == NULL){
+        free(*head);
+        *head = NULL;
+        return;
+    }
+
+    Node *temp = *head;
+
+    while (temp->next->next != NULL)
+        temp = temp->next;
+
+    free(temp->next);
+    temp->next = NULL;
+}
+
+void deleteAfterK(Node **head, int k){
+    Node *temp = *head;
+    for (int i = 1; i < k && temp != NULL; i++)
+        temp = temp->next;
+
+    if (temp == NULL || temp->next == NULL){
+        printf("Deletion not possible\n");
+        return;
+    }
+
+    Node *del = temp->next;
+    temp->next = del->next;
+    free(del);
+}
+
+void deleteBeforeK(Node **head, int k){
+    if (k <= 2 || *head == NULL){
+        printf("Deletion not possible\n");
+        return;
+    }
+
+    Node *temp = *head;
+    for (int i = 1; i < k - 2 && temp != NULL; i++)
+        temp = temp->next;
+
+    if (temp == NULL || temp->next == NULL){
+        printf("Deletion not possible\n");
+        return;
+    }
+
+    Node *del = temp->next;
+    temp->next = del->next;
+    free(del);
+}
+
+void deleteK(Node **head, int k){
+    if (*head == NULL)
+        return;
+
+    if (k == 1){
+        deleteFront(head);
+        return;
+    }
+
+    Node *temp = *head;
+    for (int i = 1; i < k - 1 && temp != NULL; i++)
+        temp = temp->next;
+
+    if (temp == NULL || temp->next == NULL){
+        printf("Invalid k\n");
+        return;
+    }
+
+    Node *del = temp->next;
+    temp->next = del->next;
+    free(del);
+}
+
+void deleteValue(Node **head, int value){
+    if (*head == NULL)
+        return;
+
+    if ((*head)->data == value){
+        deleteFront(head);
+        return;
+    }
+
+    Node *temp = *head;
+    while (temp->next != NULL && temp->next->data != value)
+        temp = temp->next;
+
+    if (temp->next == NULL){
+        printf("Value not found\n");
+        return;
+    }
+
+    Node *del = temp->next;
+    temp->next = del->next;
+    free(del);
+}
+
+void reverseList(Node **head){
+    Node *prev = NULL;
+    Node *curr = *head;
+    Node *next = NULL;
+
+    while (curr != NULL){
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+
+    *head = prev;
+}
+
+void sortList(Node **head){
+    Node *i, *j;
+    int temp;
+    for (i = *head; i != NULL; i = i->next){
+        for (j = i->next; j != NULL; j = j->next){
+            if (i->data > j->data){
+                temp = i->data;
+                i->data = j->data;
+                j->data = temp;
+            }
+        }
+    }
+}
+
+void searchElement(Node *head, int value){
+    int pos = 1;
+    while (head != NULL){
+        if (head->data == value){
+            printf("Found at position %d\n", pos);
+            return;
+        }
+
+        head = head->next;
+        pos++;
+    }
+
+    printf("Element not found\n");
+}
+
+Node* mergeSorted(Node *head1, Node *head2){
+    Node dummy;
+    Node *tail = &dummy;
+    dummy.next = NULL;
+
+    while (head1 && head2){
+        if (head1->data < head2->data){
+            tail->next = head1;
+            head1 = head1->next;
+        }else{
+            tail->next = head2;
+            head2 = head2->next;
+        }
+
+        tail = tail->next;
+    }
+
+    if (head1)
+        tail->next = head1;
+    else
+        tail->next = head2;
+
+    return dummy.next;
+}
+
+Node* concatenate(Node *head1, Node *head2){
+    if (head1 == NULL)
+        return head2;
+
+    Node *temp = head1;
+    while (temp->next != NULL)
+        temp = temp->next;
+
+    temp->next = head2;
+
+    return head1;
+}
+
+int areEqual(Node *head1, Node *head2){
+    while (head1 != NULL && head2 != NULL){
+        if (head1->data != head2->data)
+            return 0;
+
+        head1 = head1->next;
+        head2 = head2->next;
+    }
+
+    return (head1 == NULL && head2 == NULL);
 }

@@ -1,76 +1,6 @@
-import java.util.Arrays;
 import java.util.Scanner;
-class InvalidEmployeeDataException extends Exception {
-    public InvalidEmployeeDataException(String message) {
-        super(message);
-    }
-}
 
-class Emp {
-    protected int id;
-    protected int depCode;
-
-    public Emp(int id, int depCode) throws InvalidEmployeeDataException {
-        if (depCode < 0 || depCode > 5) { 
-            throw new InvalidEmployeeDataException("Invalid Base Employee Department Code: " + depCode + ". Allowed range is 0 to 5.");
-        }
-        this.id = id;
-        this.depCode = depCode;
-    }
-
-    protected Emp(int id, int depCode, int maxRange) throws InvalidEmployeeDataException {
-        if (depCode < 0 || depCode > maxRange) { 
-            throw new InvalidEmployeeDataException("Invalid Department Code: " + depCode + ". Allowed range is 0 to " + maxRange + ".");
-        }
-        this.id = id;
-        this.depCode = depCode;
-    }
-
-    public void display() {
-        System.out.print("Emp ID: " + id + " | Dep Code: " + depCode);
-    }
-}
-
-class GradedEmp extends Emp {
-    private double[] skillTestMarks;
-
-    public GradedEmp(int id, int depCode, double[] skillTestMarks) throws InvalidEmployeeDataException {
-        super(id, depCode == 0 ? 10 : depCode, 10);
-
-        if (skillTestMarks == null || skillTestMarks.length == 0) {
-            throw new InvalidEmployeeDataException("Skill test marks cannot be null or empty.");
-        }
-        for (double mark : skillTestMarks) {
-            if (mark < 0 || mark > 100) {
-                throw new InvalidEmployeeDataException("Invalid test mark discovered: " + mark + ". Must be between 0 and 100.");
-            }
-        }
-        this.skillTestMarks = skillTestMarks;
-    }
-
-    public char calculateGrade() {
-        double sum = 0;
-        for (double mark : skillTestMarks) {
-            sum += mark;
-        }
-        double average = sum / skillTestMarks.length;
-
-        if (average >= 85) return 'A';
-        else if (average >= 70) return 'B';
-        else if (average >= 55) return 'C';
-        else if (average >= 40) return 'D';
-        else return 'E';
-    }
-
-    @Override
-    public void display() {
-        super.display();
-        System.out.println(" | Marks: " + Arrays.toString(skillTestMarks) + " | Grade: " + calculateGrade());
-    }
-}
-
-
-public class Q5 {
+public class prac {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
@@ -91,7 +21,7 @@ public class Q5 {
             switch (choice) {
                 case 1:
                     System.out.println("\n--- [Scenario 1: Standard Employee] ---");
-                    System.out.print("Enter Employee ID: ");
+                    System.out.print("Enter Employee ID (e.g., 101): ");
                     int empId = scanner.nextInt();
                     System.out.print("Enter Department Code [0-5]: ");
                     int depCode = scanner.nextInt();
@@ -108,10 +38,11 @@ public class Q5 {
 
                 case 2:
                     System.out.println("\n--- [Scenario 2: Graded Employee] ---");
-                    System.out.print("Enter Employee ID: ");
+                    System.out.print("Enter Employee ID (e.g., 201): ");
                     int gEmpId = scanner.nextInt();
                     
-                    System.out.print("Enter Department Code [0-5]: ");
+                    // Tip for testing: Entering '0' here will test requirement 6(b) conversion to '10'
+                    System.out.print("Enter Department Code [0-5] (Try '0' to watch it map to '10'): ");
                     int gDepCode = scanner.nextInt();
 
                     System.out.print("How many skill tests did this employee take? ");
@@ -124,6 +55,7 @@ public class Q5 {
 
                     double[] marks = new double[totalTests];
                     for (int i = 0; i < totalTests; i++) {
+                        // Tip for testing: Entering negative values or scores > 100 will trigger the custom validation trap
                         System.out.print("  Enter score for test #" + (i + 1) + " (0-100): ");
                         marks[i] = scanner.nextDouble();
                     }
@@ -139,7 +71,7 @@ public class Q5 {
 
                 case 3:
                     running = false;
-                    System.out.println("\nExiting System");
+                    System.out.println("\nExiting System. Happy Testing!");
                     break;
 
                 default:
@@ -149,4 +81,5 @@ public class Q5 {
         }
         scanner.close();
     }
+    
 }

@@ -42,7 +42,7 @@ void parse_input_file(const char *filename) {
         Process p;
         p.pid = val;
         
-        if (fscanf(file, "%d %d", &p.priority, &p.arrival_time) != 3) {
+        if (fscanf(file, "%d %d", &p.priority, &p.arrival_time) != 2) {
             // Safe fallback if format mismatches mid-read
             break;
         }
