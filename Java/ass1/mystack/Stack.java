@@ -21,6 +21,10 @@ public class Stack {
         }
     }
 
+    public int size(){
+        return top+1;
+    }
+
     public int pop(){
         if(top==-1){
             return -1;

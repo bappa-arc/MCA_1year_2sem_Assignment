@@ -1,5 +1,4 @@
 package mystack;
-
 public class SpecialStack extends Stack {
 
     public SpecialStack(int size) {
