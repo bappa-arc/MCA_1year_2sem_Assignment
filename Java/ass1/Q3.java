@@ -1,7 +1,4 @@
 import java.util.Scanner;
-import mystack.Stack;
-import mystack.StackSorter;
-import mystack.SpecialStack;
 
 public class Q3 {
     static SpecialStack merge(SpecialStack s1, SpecialStack s2, int totalSize) {
