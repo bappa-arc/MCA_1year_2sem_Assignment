@@ -119,44 +119,48 @@ public class Q9 {
 
                 case 4:
 
-                    System.out.print("Enter Number of Plates: ");
-                    int p = sc.nextInt();
+                    System.out.print("Enter Tray Width: ");
+                    int trayWidth = sc.nextInt();
 
-                    Tray tray = new Tray(p);
+                    System.out.print("Enter Tray Length: ");
+                    int trayLength = sc.nextInt();
 
-                    System.out.print("Enter Width: ");
-                    int tw = sc.nextInt();
+                    System.out.print("Enter Plate Width: ");
+                    int plateWidth = sc.nextInt();
 
-                    System.out.print("Enter Length: ");
-                    int tl = sc.nextInt();
+                    System.out.print("Enter Plate Length: ");
+                    int plateLength = sc.nextInt();
 
-                    tray.W(tw);
-                    tray.L(tl);
-
+                    Tray tray = new Tray();
+                    tray.L(trayLength);
+                    tray.W(trayWidth);
+                    tray.setPlateSize(plateWidth, plateLength);
                     tray.display();
 
                     break;
 
                 case 5:
 
-                    System.out.print("Enter Number of Balls: ");
-                    int balls = sc.nextInt();
+                    System.out.print("Enter Box Width: ");
+                    int boxWidth = sc.nextInt();
 
-                    NewBox box = new NewBox(balls);
+                    System.out.print("Enter Box Length: ");
+                    int boxLength = sc.nextInt();
 
-                    System.out.print("Enter Width: ");
-                    int bw = sc.nextInt();
+                    System.out.print("Enter Box Depth: ");
+                    int boxDepth = sc.nextInt();
 
-                    System.out.print("Enter Length: ");
-                    int bl = sc.nextInt();
+                    System.out.print("Enter Ball Width: ");
+                    int ballWidth = sc.nextInt();
 
-                    System.out.print("Enter Depth: ");
-                    int bd = sc.nextInt();
+                    System.out.print("Enter Ball Length: ");
+                    int ballLength = sc.nextInt();
 
-                    box.W(bw);
-                    box.L(bl);
-                    box.D(bd);
+                    System.out.print("Enter Ball Depth: ");
+                    int ballDepth = sc.nextInt();
 
+                    NewBox box = new NewBox(boxWidth, boxLength, boxDepth);
+                    box.setBallSize(ballWidth, ballLength, ballDepth);
                     box.display();
 
                     break;
