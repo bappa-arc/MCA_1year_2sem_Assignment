@@ -72,9 +72,6 @@ int main()
     return 0;
 }
 
-/* ================================= */
-/* JOSEPHUS USING 2D ARRAY */
-/* ================================= */
 
 void pushArray(int n, int k)
 {
@@ -124,9 +121,6 @@ void pushArray(int n, int k)
     }
 }
 
-/* ================================= */
-/* JOSEPHUS USING CIRCULAR SLL */
-/* ================================= */
 
 void pushSLL(int n, int k)
 {
@@ -183,9 +177,6 @@ void pushSLL(int n, int k)
     free(curr);
 }
 
-/* ================================= */
-/* JOSEPHUS USING CIRCULAR DLL */
-/* ================================= */
 
 void pushDLL(int n, int k)
 {
