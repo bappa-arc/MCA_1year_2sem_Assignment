@@ -5,4 +5,5 @@ def validate_phone(number):
     return bool(re.match(pattern, number))
 
 # Test
-print(validate_phone("1234567890")) # True
+phone=input("Enter your phone number: ")
+print(validate_phone(phone)) # True

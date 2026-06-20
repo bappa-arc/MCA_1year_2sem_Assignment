@@ -15,7 +15,7 @@ def prime_generator(limit):
             primes.append(num)
             yield num
 
-# Example: Generate and print primes up to 50
+a=int(input("Enter the range to generate prime number: "))
 for prime in prime_generator(50):
     print(prime, end=" ")
 print()

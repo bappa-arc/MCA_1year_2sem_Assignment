@@ -1,3 +1,4 @@
+import datetime
 coupons = {
     "Monday": "MON10 - 10%",
     "Tuesday": "TUE15 - 15%",
@@ -8,5 +9,5 @@ coupons = {
     "Sunday": "SUN30 - 30%"
 }
 
-day = "Friday"
+day = datetime.datetime.now().strftime("%A")
 print(f"Discount for {day}: {coupons.get(day)}")
