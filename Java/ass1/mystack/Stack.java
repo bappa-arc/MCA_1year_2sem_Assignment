@@ -1,3 +1,4 @@
+package mystack;
 public class Stack {
     protected int [] arr;
     protected int top;

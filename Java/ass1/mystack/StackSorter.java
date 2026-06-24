@@ -1,3 +1,4 @@
+package mystack;
 public class StackSorter {
     public static SpecialStack sortStack(Stack A) {
         // Stack A = new Stack();

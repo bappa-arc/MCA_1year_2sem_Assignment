@@ -1,25 +1,13 @@
-# 1. Define sample input sequences
-student_list = ["Alice", "Bob", "Charlie", "David"]
-subject_list = ["Math", "Physics", "Chemistry", "Biology"]
-marks_list   = [85, 92, 78, 95]
+def get_list(name):
+    raw = input(f"Enter {name} (space-separated numbers): ")
+    return list(map(int, raw.split()))
+student_list = get_list("Student List")
+subject_list = get_list("Subject List")
+marks_list   = get_list("Marks List  ")
 
-# 2. Use zip to bundle items together element-wise:
-# [('Alice', 'Math', 85), ('Bob', 'Physics', 92), ...]
-zipped_data = zip(student_list, subject_list, marks_list)
+result = list(map(lambda trio: max(trio), zip(student_list, subject_list, marks_list)))
 
-# 3. Use map with a lambda function to find the maximum entry based on marks.
-# We turn it into a list first because map evaluates items lazily.
-data_list = list(zipped_data)
-
-# Find the record with the maximum marks value (the 3rd element, index 2)
-element_wise_max = max(data_list, key=lambda student_record: student_record[2])
-
-# ==========================================
-# Runnable Output
-# ==========================================
-print("Zipped Student Records:")
-for record in data_list:
-    print(record)
-
-print("\nElement-wise Maximum Record (Highest Mark):")
-print(element_wise_max)
+print(f"\nStudent List    : {student_list}")
+print(f"Subject List    : {subject_list}")
+print(f"Marks List      : {marks_list}")
+print(f"Element-wise Max: {result}")

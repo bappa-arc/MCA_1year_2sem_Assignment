@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+import mystack.SpecialStack;
+import mystack.Stack;
+import mystack.StackSorter;
+
 public class Q4 {
     public static void main(String[] args) {
         int n = 0;

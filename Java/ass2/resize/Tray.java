@@ -1,38 +1,29 @@
 package resize;
 
 public class Tray implements ResizableTray {
-
     int width;
     int length;
     int plateWidth;
     int plateLength;
-
     public void W(int width) {
         this.width = width;
     }
-
     public void L(int length) {
         this.length = length;
     }
-
     public void setPlateSize(int plateWidth, int plateLength) {
         this.plateWidth = plateWidth;
         this.plateLength = plateLength;
     }
-
     public int calculatePlateCount() {
         if (width <= 0 || length <= 0 || plateWidth <= 0 || plateLength <= 0) {
             return 0;
         }
-
         int countNormal = (width / plateWidth) * (length / plateLength);
         int countRotated = (width / plateLength) * (length / plateWidth);
-
         return Math.max(countNormal, countRotated);
     }
-
     public void display() {
-
         System.out.println("Tray Details");
         System.out.println("Tray Width: " + width);
         System.out.println("Tray Length: " + length);
