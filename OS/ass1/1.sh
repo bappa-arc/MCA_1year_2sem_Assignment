@@ -1,20 +1,15 @@
 #!/bin/bash
-
 while true
 do
     echo "Enter first value (userv1): "
     read userv1
-
     echo "Enter second value (userv2): "
     read userv2
-
     # Function to check if input is numeric (int or float)
     is_number() {
         [[ $1 =~ ^-?[0-9]+([.][0-9]+)?$ ]]
     }
-
     echo "--------------------------------------"
-
     # ADDITION
     if is_number "$userv1" && is_number "$userv2"; then
         sum=$(echo "$userv1 + $userv2" | bc)
@@ -22,7 +17,6 @@ do
     else
         echo "Addition not possible: Non-numeric input"
     fi
-
     # SUBTRACTION
     if is_number "$userv1" && is_number "$userv2"; then
         sub=$(echo "$userv1 - $userv2" | bc)
@@ -30,7 +24,6 @@ do
     else
         echo "Subtraction not possible: Non-numeric input"
     fi
-
     # MULTIPLICATION
     if is_number "$userv1" && is_number "$userv2"; then
         mul=$(echo "$userv1 * $userv2" | bc)
@@ -38,7 +31,6 @@ do
     else
         echo "Multiplication not possible: Non-numeric input"
     fi
-
     # DIVISION
     if is_number "$userv1" && is_number "$userv2"; then
         if [ "$userv2" == "0" ]; then
@@ -50,16 +42,12 @@ do
     else
         echo "Division not possible: Non-numeric input"
     fi
-
     echo "--------------------------------------"
-
     # Ask user to continue
     echo "Do you want to continue? (y/n): "
     read choice
-
     if [[ "$choice" != "y" && "$choice" != "Y" ]]; then
         echo "Exiting program..."
         break
     fi
-
 done

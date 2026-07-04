@@ -8,19 +8,16 @@ int main()
 {
     pid_t pid;
     int status;
-
     // Create child process
     pid = fork();
 
     // Error in fork
-    if (pid < 0)
-    {
+    if (pid < 0) {
         printf("Fork failed\n");
         exit(1);
     }
     // Child process
-    else if (pid == 0)
-    {
+    else if (pid == 0) {
         printf("Child Process\n");
         printf("Child PID: %d\n", getpid());
         printf("Parent PID: %d\n", getppid());
@@ -29,8 +26,7 @@ int main()
         exit(5);
     }
     // Parent process
-    else
-    {
+    else {
         // Wait for child to finish
         wait(&status);
 
@@ -41,6 +37,5 @@ int main()
         // Print child exit status
         printf("Child Exit Status: %d\n", WEXITSTATUS(status));
     }
-
     return 0;
 }
