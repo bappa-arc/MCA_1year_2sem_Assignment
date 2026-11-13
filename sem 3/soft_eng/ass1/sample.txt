@@ -1,0 +1,51 @@
+Experiment    1    1.   Connect   two   hosts
+back-to-back  with a cross over cable. Assign
+IP  addresses,  and see whether they are able
+to  ping  each  other. 2. Create a LAN (named
+LAN-A)  with 3 hosts using a hub. 3. Create a
+LAN  (named  LAN-B)  with  3  hosts  using  a
+switch.  Record  contents of the ARP Table of
+end hosts and the MAC Forwarding Table of the
+switch.  Ping  each pair of nodes. Now record
+the  contents  of  the ARP Table of end hosts
+and  the  MAC  Forwarding Table of the switch
+again.   4.   Connect   LAN-A  and  LAN-B  by
+connecting   the   hub  and  switch  using  a
+cross-over  cable.  Ping between each pair of
+hosts  of  LAN-A  and  LAN-B.  Now record the
+contents  of  the  ARP Table of end hosts and
+the MAC Forwarding Table of the switch again.
+Experiment  2 1. Create a LAN (named JU-Main)
+with  three  hosts  connected  via  a layer-2
+switch.  Connect  the  switch  to  a  router.
+Assign  IP addresses to all the hosts and the
+router  interface  connected to this LAN from
+network  address  192.168.120.0/24. Configure
+default  gateway  of  each  hosts  as  the IP
+address of the interface of the router, which
+is  connected  to  the LAN. 2. Create another
+LAN  (named JU-SL) with three hosts connected
+via  a layer-2 switch. Connect this switch to
+another   router   (Cisco  1818).  Assign  IP
+addresses  to  all  the  hosts and the router
+interface  connected to this LAN from network
+address  192.168.130.0/24.  Configure default
+gateway  of  each  hosts as the IP address of
+the   interface   of   the  router  which  is
+connected  to  the  LAN.  3.  Connect the two
+routers  through  appropriate WAN interfaces.
+Assign  IP  addresses  to  the WAN interfaces
+from  network 192.168.150.0/24. 4. Add static
+route in both of the routers to route packets
+between  two  LANs. 5. Test the configuration
+by  sending  ping requests from hosts in each
+LAN.  Experiment  3  1.  This  experiment  is
+continuation  of Experiment 2. Create a third
+LAN  (named JU-3C) with three hosts connected
+via  a layer-2 switch. Connect this switch to
+another  router.  Assign  IP addresses to all
+the  hosts and the router interface connected
+to  this  LAN  from network 192.168.140.0/24.
+Configure  default  gateway  of each hosts as
+the IP address of the interface of the router
+which is connected to the LAN.               
